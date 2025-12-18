@@ -264,7 +264,7 @@ function saveCurrentDrawing() {
         userImageUrl: userImageUrl,
     };
     state.gallery.unshift(galleryItem);
-    addGalleryItem(state.currentDexData);
+    addGalleryItem(galleryItem);
 }
 
 /* =========================
