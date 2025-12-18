@@ -8,6 +8,7 @@ const state = {
     penColor : "#000000",
     penWidth : 4,
     isEraser : false,
+    gallery: []
 };
 
 /* =========================
@@ -145,27 +146,24 @@ function showAnswer() {
 /* =========================
     Gallery
 ========================= */
-function addGalleryItem(dexData) {
+function addGalleryItem(item) {
     const galleryListElement = document.getElementById("gallery-list");
-
-    const dummyCanvasImageUrl =
-        "https://placehold.jp/e9e8e8/595959/150x150.png?text=canvas_draw";
 
     const itemElement = document.createElement("div");
     itemElement.className = "gallery-item";
 
     itemElement.innerHTML = `
-        <h3 class="gallery-pokemon-name">${dexData.name}</h3>
+        <h3 class="gallery-pokemon-name">${item.pokemonName}</h3>
 
         <div class="gallery-images">
             <div class="gallery-image-block">
                 <p>正解</p>
-                <img src="${dexData.image_url}" alt="正解画像">
+                <img src="${item.correctImageUrl}" alt="正解画像">
             </div>
 
             <div class="gallery-image-block">
                 <p>あなたの絵</p>
-                <img src="${dummyCanvasImageUrl}" alt="描いた絵">
+                <img src="${item.userImageUrl}" alt="描いた絵">
             </div>
         </div>
     `;
@@ -257,7 +255,15 @@ function loadRandomDex() {
 function saveCurrentDrawing() {
     if (!state.currentDexData) return;
 
-    console.log("描いた画像の保存機能はHTTPS化後に実装予定");
+    const userImageUrl = dom.canvas.toDataURL("image/png");
+
+    const galleryItem = {
+        pokemonNo: state.currentDexData.no,
+        pokemonName: state.currentDexData.name,
+        correctImageUrl: state.currentDexData.image_url,
+        userImageUrl: userImageUrl,
+    };
+    state.gallery.unshift(galleryItem);
     addGalleryItem(state.currentDexData);
 }
 
@@ -275,14 +281,3 @@ dom.toggleAnswerButton.disabled = true;
 function setTheme(theme) {
     document.body.className = `theme-${theme}`;
   }
-
-/* =========================
-   Dummy API(後日削除)
-========================= */
-const dummyApiData = {
-  1: { no: 1, name: "フシギダネ", desc: "うまれたときから せなかに しょくぶつの タネが うえてあって すこしずつ おおきくなる。", image_url: "https://placehold.jp/66c281/ffffff/150x150.png?text=No.1" },
-  2: { no: 2, name: "フシギソウ", desc: "せなかの つぼみが おおきく そだってくると ふたあしで たつことが できなくなる。", image_url: "https://placehold.jp/66c281/ffffff/150x150.png?text=No.2" },
-  3: { no: 3, name: "フシギバナ", desc: "はなから うっとりする かおりが ただよい たたかうものの きもちを なだめてしまう。", image_url: "https://placehold.jp/66c281/ffffff/150x150.png?text=No.3" },
-  4: { no: 4, name: "ヒトカゲ", desc: "うまれたときから しっぽに ほのおが ともっている。", image_url: "https://placehold.jp/cf8181/ffffff/150x150.png?text=No.4" },
-  5: { no: 5, name: "リザード", desc: "しっぽを ふりまわして あいてを なぎたおし するどい ツメで きりさく。", image_url: "https://placehold.jp/cf8181/ffffff/150x150.png?text=No.5" }
-};
