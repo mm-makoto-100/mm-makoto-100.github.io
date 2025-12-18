@@ -264,6 +264,8 @@ function saveCurrentDrawing() {
         userImageUrl: userImageUrl,
     };
     state.gallery.unshift(galleryItem);
+    console.log(galleryItem);
+
     addGalleryItem(galleryItem);
 }
 
