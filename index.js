@@ -147,7 +147,7 @@ function showAnswer() {
     Gallery
 ========================= */
 function addGalleryItem(item) {
-    console(item);
+    console.log(item);
     const galleryListElement = document.getElementById("gallery-list");
 
     const itemElement = document.createElement("div");
@@ -202,8 +202,6 @@ async function fetchDexData(id) {
         const jpName = speciesData.names.find(
             n => n.language.name === "ja"
         )?.name ?? pokemonData.name;
-        console.log(pokemonData);
-        console.log(speciesData);
         // 日本語図鑑説明（最初の1文で十分）
         const jpFlavor = speciesData.flavor_text_entries.find(
             f => f.language.name === "ja"
