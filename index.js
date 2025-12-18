@@ -184,18 +184,48 @@ function setLoadButtonDisabled(disabled) {
 /* =========================
     API Simulation
 ========================= */
-function fetchDexData(id) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            dummyApiData[id]
-                ? resolve(dummyApiData[id])
-                : reject("データが見つかりません");
-        }, 500);
-    });
+async function fetchDexData(id) {
+       try {
+        // 並列取得
+        const [pokemonRes, speciesRes] = await Promise.all([
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`),
+            fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+        ]);
+
+        if (!pokemonRes.ok || !speciesRes.ok) {
+            throw new Error("ポケモンデータの取得に失敗しました");
+        }
+
+        const pokemonData = await pokemonRes.json();
+        const speciesData = await speciesRes.json();
+
+        // 日本語名
+        const jpName = speciesData.names.find(
+            n => n.language.name === "ja"
+        )?.name ?? pokemonData.name;
+        console.log(pokemonData);
+        console.log(speciesData);
+        // 日本語図鑑説明（最初の1文で十分）
+        const jpFlavor = speciesData.flavor_text_entries.find(
+            f => f.language.name === "ja"
+        )?.flavor_text
+            .replace(/\n|\f/g, " ")
+            ?? "説明文が取得できませんでした。";
+
+        return {
+            no: speciesData.pokedex_numbers[0]?.entry_number ?? id,
+            name: jpName,
+            desc: jpFlavor,
+            image_url: pokemonData.sprites.other["official-artwork"].front_default
+        };
+    } catch (error) {
+        console.error(error);
+        throw "ポケモンデータを取得できませんでした";
+    }
 }
 
 function getRandomDexNumber() {
-    return Math.floor(Math.random() * 5) + 1;
+    return Math.floor(Math.random() * 1017) + 1;
 }
 
 function loadRandomDex() {
