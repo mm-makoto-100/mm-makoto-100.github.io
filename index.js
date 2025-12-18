@@ -147,6 +147,7 @@ function showAnswer() {
     Gallery
 ========================= */
 function addGalleryItem(item) {
+    console(item);
     const galleryListElement = document.getElementById("gallery-list");
 
     const itemElement = document.createElement("div");
@@ -256,7 +257,8 @@ function saveCurrentDrawing() {
     if (!state.currentDexData) return;
 
     const userImageUrl = dom.canvas.toDataURL("image/png");
-
+    console.log("正解画像URL:", state.currentDexData.image_url);
+    console.log("ユーザー画像URL:", userImageUrl.slice(0, 50));
     const galleryItem = {
         pokemonNo: state.currentDexData.no,
         pokemonName: state.currentDexData.name,
