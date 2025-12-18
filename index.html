@@ -1,41 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>あなたのＨＰタイトル</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="index.css">
+  <meta charset="utf-8">
+  <title>APIテスト</title>
+  <!-- ※ファイル名位置 -->
+  <link rel="stylesheet" href="index.css">
 </head>
-<body>
-<div id="outer">
-<header><div id="header-container"><div id="head-inner"><h1>あなたのＨＰタイトル</h1>
-<p class="description">あなたのＨＰの説明文</p></div></div>
-</header>
-<div id="content-wrapper">
-<main>
-<div id="inner">
-<h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</div>
-</main>
-<aside>
-<div id="middle-inner">
-<div class="side-title">menu</div>
-<div class="side">
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</div>
-</div>
-</aside>
-</div>
-<footer>© 2010 あなたのホームページ</footer>
-</div></body>
+
+<body class="theme-monster">
+  <header class="site-header">
+    <div class="site-logo">APIテスト用サイト</div>
+    
+  </header>
+  
+  <section class="theme-selector">
+    <button onclick="setTheme('monster')">モンスターボール</button>
+    <button onclick="setTheme('master')">マスターボール</button>
+    <button onclick="setTheme('hyper')">ハイパーボール</button>
+  </section>
+  <main class="main-content">
+    <h1 class="page-title">Welcome to the Base UI</h1>
+    <p class="page-description">ここにページの説明が入ります。</p>
+
+    <button
+      class="btn-primary"
+      id="load-dex-btn"
+      onclick="loadRandomDex()"
+    >
+      ランダム表示
+    </button>
+  </main>
+
+  <section class="dex-info">
+    <h3 class="section-title">図鑑情報</h3>
+
+    <div class="dex-card">
+      <div class="dex-card-header">
+        <span id="dex-no">No.???</span>
+        <span id="dex-name">名前</span>
+      </div>
+
+      <p id="dex-desc">
+        ここに図鑑説明が入ります。
+      </p>
+    </div>
+  </section>
+
+  <section class="draw-tools">
+    <label>
+      色
+      <input type="color" id="pen-color" value="#000000">
+    </label>
+
+    <label>
+      太さ
+      <input type="range" id="pen-width" min="1" max="20" value="4">
+    </label>
+
+    <button id="eraser-btn" class="btn-secondary">
+      消しゴム
+    </button>
+  </section>
+
+  <section class="draw-section">
+    <h3 class="section-title">キャンバス</h3>
+
+    <canvas id="canvas"></canvas>
+
+    <button id="clear-canvas-btn" class="btn-secondary">
+      キャンバスをクリア
+    </button>
+  </section>
+
+  <section class="answer-section">
+    <button
+      class="btn-secondary"
+      id="toggle-answer-btn"
+      onclick="showAnswer()"
+      disabled
+    >
+      正解を見る&画像保存
+    </button>
+
+    <div
+      class="answer-image-wrapper"
+      id="answer-image-wrapper"
+      hidden
+    >
+      <img
+        id="answer-image"
+        alt="ポケモン正解画像"
+      >
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <h3 class="section-title">ギャラリー</h3>
+
+    <div id="gallery-list" class="gallery-list">
+      <!-- JSでカードを追加 -->
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <small>© 2025 TEST</small>
+  </footer>
+
+  <!-- ※ファイル名位置 -->
+  <script src="index.js"></script>
+</body>
 </html>

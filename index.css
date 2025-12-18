@@ -1,168 +1,224 @@
-@charset "UTF-8";
+/* =========================
+   Theme Variables
+========================= */
+.theme-monster {
+  --ui-bg: #f2f4f8;
+  --ui-panel: #ffffff;
+  --ui-border: #333333;
+  --ui-accent: #e84848;
+}
+
+.theme-master {
+  --ui-bg: #f3f0ff;
+  --ui-panel: #ffffff;
+  --ui-border: #2b2b2b;
+  --ui-accent: #7b5cff;
+}
+
+.theme-hyper {
+  --ui-bg: #fff9e6;
+  --ui-panel: #ffffff;
+  --ui-border: #ffcb05;
+  --ui-accent: #1f1f1f;
+}
+
+/* =========================
+   Reset & Base
+========================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
-	margin: 0;
-	padding: 0;
-	font-family: "游ゴシック Medium", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
-	line-height: 1.6;
-    font-size: 16px;
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: var(--ui-bg);
+  color: #333;
+  transition: background-color 0.3s ease;
 }
-#header-container {
-  margin: 0 auto;
-  width: 694px;
-}
-header {
-	background-color: #214555;
-}
-#head-inner {
-    padding: 25px 0;
-}
-h1 {
-	font-size: 26px;
-	font-weight: bold;
-	padding: 10px 0 0 0;
-	margin: 0;
-	color: #f3e6d2;
-}
-h1 a {
-	font-weight: bold;
-	color: #f3e6d2;
-	text-decoration: none;
-}
-h1 a:hover {
-	color: #e8f3f9;
-	text-decoration: none;
-}
-.description {
-	line-height: 1.2;
-	color: #f3f2eb;
-	margin: 0.5em 0 1em 0;
-}
-h2 {
-	font-size: 22px;
-	margin: 0;
-	padding: 4px 0;
-	border-bottom: 1px solid #999;
-}
-#content-wrapper {margin: 0 auto;
-    width: 694px;}
-main {
-	color: #333;
-}
-#inner {
-	padding: 20px 0 0 0;
-}
-ul {
-	margin: 0 0 0 1em;
-	padding: 0;
-}
-li {
-	list-style: disc;
-}
-p {
-	margin: 1em 0;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border: 0;
-}
-hr {
-	border-width: 1px 0 0 0;
-	border-style: solid;
-	border-color: #ccc;
-	height: 1px;
-}
-a {
-	font-weight: normal;
-}
-aside {
 
+/* =========================
+   Header / Footer
+========================= */
+.site-header {
+  background: var(--ui-accent);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 4px solid var(--ui-border);
 }
-#middle-inner {
-	padding: 20px 0 20px 0;
-}
-.side-title {
-	padding: 7px 16px 7px 16px;
-	background-color: #f1f1f1;
-	color: #333;
-	font-weight: bold;
-	border: 1px solid #ccc;
-	margin-bottom: 10px;
-	border-radius: 5px;
-}
-.side {
-	margin: 0 0 10px 0;
-	padding: 2px 8px 8px 7px;
-	background-color: #fcfcfc;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
-}
-.side ul {
-	margin: 0 0 0 10px;
-	padding: 0;
-}
-.side li {
-	list-style: none;
-	margin-bottom: 0.5em;
-}
-.side li a {
-	text-decoration: none;
-	color: #214555;
-}
-.side li a:hover {
-	text-decoration: underline;
-}
-footer {
-	font-size: 15px;
-	height: 100px;
-	clear: both;
-	text-align: center;
-}
-blockquote {
-	border: 1px solid #ccc;
-	padding: 5px;
-	margin: 10px;
-}
-@media screen and (max-width: 767px) {
-#header-container {
-    margin: 0;
-	width: 100%;
-}
-header {
 
+.site-logo {
+  font-weight: bold;
+  font-size: 1.1rem;
 }
-#head-inner {
-    padding: 25px 10px;
-	background-color: #214555;
+
+.site-footer {
+  background: var(--ui-border);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.8rem;
 }
-.description {
+
+/* =========================
+   Common
+========================= */
+.section-title {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  border-left: 4px solid var(--ui-border);
+  padding-left: 8px;
 }
-#content-wrapper {
-margin: 0;
-	width: 100%;}
-main {
-width: 100%;
-	color: #333;
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
 }
-#inner {
-	padding: 20px 10px 0 10px;
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
-aside {
-width: 100%;
+
+/* =========================
+   Buttons
+========================= */
+.btn-primary {
+  background: var(--ui-accent);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
 }
-#middle-inner {
-	padding: 10px 10px 20px 10px;
+
+.btn-secondary {
+  background: var(--ui-panel);
+  color: var(--ui-border);
+  border: 2px solid var(--ui-border);
+  padding: 8px 14px;
 }
-h1 {
-	font-size: 20px;
+
+#toggle-answer-btn {
+  background: var(--ui-panel);
+  border: 3px solid var(--ui-border);
+  color: var(--ui-border);
 }
-h2 {
-	font-size: 18px;
+
+/* =========================
+   Main
+========================= */
+.main-content {
+  padding: 16px;
+  text-align: center;
 }
-h3 {
-	font-size: 16px;
+
+.page-title {
+  margin-bottom: 4px;
 }
-h4 {
-	font-size: 14px;
+
+.page-description {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
 }
+
+/* =========================
+   Dex Info
+========================= */
+.dex-info {
+  padding: 16px;
+}
+
+.dex-card {
+  background: var(--ui-panel);
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 520px;
+}
+
+.dex-card-header {
+  display: flex;
+  gap: 12px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* =========================
+   Draw Tools
+========================= */
+.draw-tools {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Canvas
+========================= */
+.draw-section {
+  padding: 16px;
+}
+
+#canvas {
+  width: 100%;
+  height: 60vh;
+  background: #fff;
+  border: 3px solid var(--ui-border);
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
+  touch-action: none;
+}
+
+/* =========================
+   Answer
+========================= */
+.answer-section {
+  padding: 16px;
+  text-align: center;
+}
+
+.answer-image-wrapper img {
+  max-width: 220px;
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* =========================
+   Gallery
+========================= */
+.gallery-section {
+  padding: 16px;
+}
+
+.gallery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gallery-item {
+  background: var(--ui-panel);
+  border: 2px solid var(--ui-border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.gallery-images {
+  display: flex;
+  gap: 16px;
+}
+
+.gallery-image-block {
+  text-align: center;
+}
+
+.gallery-image-block img {
+  width: 150px;
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
 }
